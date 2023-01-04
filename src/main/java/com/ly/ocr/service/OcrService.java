@@ -17,18 +17,20 @@ import java.util.Base64;
 
 public class OcrService {
 
-    private String DATA_PATH = "/home/luiz/dev/Tess4J/tessdata/";
+    private final String DATA_PATH = "/home/luiz/dev/Tess4J/tessdata/";
+    private final int ENGINE_MODE = 2;
+    private final int PAGE_MODE = 1;
+    private final String LANG = "por";
 
     public String ocrRead(String image){
-        //OpenCV.loadLocally();
 
         Tesseract tesseract = new Tesseract();
-        tesseract.setOcrEngineMode(2);
-        tesseract.setPageSegMode(1);
-        tesseract.setLanguage("por");
+        tesseract.setOcrEngineMode(ENGINE_MODE);
+        tesseract.setPageSegMode(PAGE_MODE);
+        tesseract.setLanguage(LANG);
         tesseract.setDatapath(DATA_PATH);
 
-        Imgcodecs imageCodecs = new Imgcodecs();
+
 
         byte[] imageByte = Base64.getDecoder().decode(image);
         ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
@@ -40,7 +42,9 @@ public class OcrService {
             throw new RuntimeException(e);
         }
 
-/*
+    /*
+        OpenCV.loadLocally();
+        Imgcodecs imageCodecs = new Imgcodecs();
         Mat original = imageCodecs.imread("/home/luiz/Downloads/cupom2.png");
         Mat gray = new Mat(original.rows(), original.cols(), original.type());
         Mat blur = new Mat(original.rows(), original.cols(), original.type());
