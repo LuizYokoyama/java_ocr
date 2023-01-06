@@ -25,4 +25,7 @@ public class OcrEntity{
     @Column(name = "ocr_text", length = 2024)
     private String text;
 
+    @Column(name = "image", length = 3145820)
+    private String image;
+
 }

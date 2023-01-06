@@ -5,6 +5,6 @@ import java.util.UUID;
 public interface IOcrService {
 
     String getOcrText(UUID id);
-    String ocrRead(String image);
+    String ocrScheduler(String image);
 
 }

@@ -22,7 +22,7 @@ public class OcrCtrl {
     @Operation(summary = "post image to do OCR")
     public String ocr(@RequestBody ImageDto msg){
 
-        return ocrService.ocrRead(msg.getImage());
+        return ocrService.ocrScheduler(msg.getImage());
 
     }
 
