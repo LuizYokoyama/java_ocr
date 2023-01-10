@@ -3,7 +3,6 @@ package com.ly.ocr.dto;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.UUID;
 

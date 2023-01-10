@@ -12,11 +12,8 @@ import java.util.UUID;
 @CrossOrigin(origins = "*")
 public class OcrCtrl {
 
-
-
     @Autowired
     private OcrService ocrService;
-
 
     @PostMapping("/ocr")
     @Operation(summary = "post image to do OCR")

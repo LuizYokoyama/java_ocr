@@ -2,24 +2,22 @@ package com.ly.ocr.service;
 
 import com.ly.ocr.model.OcrEntity;
 import com.ly.ocr.repository.OcrRepository;
-import org.opencv.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
+
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class OcrService implements IOcrService {
-
-
+public class OcrService {
 
     @Autowired
     private OcrRepository ocrRepository;
 
     public String getOcrText(UUID id){
 
-        return ocrRepository.findById(id).get().getText();
+        Optional<OcrEntity> optionalOcr= ocrRepository.findById(id);
+        return optionalOcr.isPresent() ? optionalOcr.get().getText() : "";
 
     }
 
@@ -33,7 +31,5 @@ public class OcrService implements IOcrService {
 
         return id.toString();
     }
-
-
 
 }
