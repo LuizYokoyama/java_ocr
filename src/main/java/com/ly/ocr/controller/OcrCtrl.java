@@ -16,7 +16,7 @@ public class OcrCtrl {
     private OcrService ocrService;
 
     @PostMapping("/ocr")
-    @Operation(summary = "post image to do OCR")
+    @Operation(summary = "post image to do OCR, return string id")
     public String ocr(@RequestBody ImageDto msg){
 
         return ocrService.ocrScheduler(msg.getImage());
