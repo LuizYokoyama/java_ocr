@@ -20,7 +20,7 @@ public class OcrCtrl {
     @PostMapping("/ocr")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "post image to do OCR, return uuid")
-    public Mono<String> ocr(@RequestBody ImageDto msg){
+    public Mono<UUID> ocr(@RequestBody ImageDto msg){
 
         return ocrService.ocrSchedule(msg.getImage());
 
@@ -28,7 +28,7 @@ public class OcrCtrl {
 
     @GetMapping("/ocr_text/{id}")
     @Operation(summary = "Get the text from the ocr Id")
-    public Mono<UUID> ocrResult(@PathVariable(value = "id") UUID id){
+    public Mono<String> ocrResult(@PathVariable(value = "id") UUID id){
 
         return ocrService.getOcrText(id);
 

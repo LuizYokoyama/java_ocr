@@ -18,15 +18,15 @@ public class OcrService {
     @Autowired
     private OcrRepository ocrRepository;
 
-    public Mono<UUID> getOcrText(UUID id){
+    public Mono<String> getOcrText(UUID id){
 
         Mono<OcrEntity> entityMono= ocrRepository.findById(id);
-        return entityMono.map(OcrEntity::getId);
+        return entityMono.map(OcrEntity::getText);
 
 
     }
 
-    public Mono<String> ocrSchedule(String image){
+    public Mono<UUID> ocrSchedule(String image){
 
         OcrEntity ocrEntity = new OcrEntity();
         ocrEntity.setId(UUID.randomUUID());
@@ -34,7 +34,7 @@ public class OcrService {
         Mono<OcrEntity> ocrEntityMono = ocrRepository.save(ocrEntity);
         OcrProcess.ocrQueue.add(ocrEntity.getId());
 
-        return ocrEntityMono.map(OcrEntity::getText);
+        return ocrEntityMono.map(OcrEntity::getId);
     }
 
 }
