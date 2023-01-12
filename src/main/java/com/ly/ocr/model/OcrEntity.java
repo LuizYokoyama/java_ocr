@@ -2,8 +2,11 @@ package com.ly.ocr.model;
 
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
-import javax.persistence.*;
+
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -12,20 +15,18 @@ import java.util.UUID;
 @Setter
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Entity
-@Table(name="TB_OCR")
+@Table(name="tb_ocr")
 public class OcrEntity{
 
     @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ocr_id")
+    @Column("ocr_id")
     @Id
     private UUID id;
 
-    @Column(name = "ocr_text", length = 2024)
+    @Column( "ocr_text")
     private String text;
 
-    @Column(name = "image", length = 3145820)
+    @Column("image")
     private String image;
 
 }

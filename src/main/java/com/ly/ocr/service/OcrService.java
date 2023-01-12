@@ -2,34 +2,39 @@ package com.ly.ocr.service;
 
 import com.ly.ocr.model.OcrEntity;
 import com.ly.ocr.repository.OcrRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Slf4j
+@Transactional
 public class OcrService {
 
     @Autowired
     private OcrRepository ocrRepository;
 
-    public String getOcrText(UUID id){
+    public Mono<String> getOcrText(UUID id){
 
-        Optional<OcrEntity> optionalOcr= ocrRepository.findById(id);
-        return optionalOcr.isPresent() ? optionalOcr.get().getText() : "";
+        Mono<OcrEntity> entityMono= ocrRepository.findById(id);
+        return entityMono.map(OcrEntity::getText);
+
 
     }
 
-    public String ocrScheduler(String image){
+    public Mono<String> ocrSchedule(String image){
 
         OcrEntity ocrEntity = new OcrEntity();
+        ocrEntity.setId(UUID.randomUUID());
         ocrEntity.setImage(image);
-        ocrEntity = ocrRepository.save(ocrEntity);
-        UUID id = ocrEntity.getId();
-        OcrProcess.ocrQueue.add(id);
+        Mono<OcrEntity> ocrEntityMono = ocrRepository.save(ocrEntity);
+        OcrProcess.ocrQueue.add(ocrEntity.getId());
 
-        return id.toString();
+        return ocrEntityMono.map(OcrEntity::getText);
     }
 
 }

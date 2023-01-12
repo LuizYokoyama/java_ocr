@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Mono;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -38,11 +40,14 @@ public class OcrProcess {
             return;
         }
 
-        Optional<OcrEntity> optionalOcr = ocrRepository.findById(id);
-        if (optionalOcr.isEmpty()){
+        Mono<OcrEntity> ocrEntityMono = ocrRepository.findById(id);
+
+        Optional<OcrEntity> ocrEntityOptional = ocrEntityMono.blockOptional();
+
+        if (ocrEntityOptional.isEmpty()){
             return;
         }
-        OcrEntity ocrEntity = optionalOcr.get() ;
+        OcrEntity ocrEntity = ocrEntityOptional.get();
 
         Tesseract tesseract = new Tesseract();
         tesseract.setOcrEngineMode(ENGINE_MODE);
@@ -50,7 +55,7 @@ public class OcrProcess {
         tesseract.setLanguage(LANG);
         tesseract.setDatapath(DATA_PATH);
 
-        byte[] imageByte = Base64.getDecoder().decode(ocrEntity.getImage());
+        byte[] imageByte = Base64.getDecoder().decode(ocrEntityOptional.get().getImage());
         ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
         BufferedImage bufferedImage;
         try {

@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 public class OcrApplication {
 
-
 	public static void main(String[] args) {
 
 		SpringApplication.run(OcrApplication.class, args);
