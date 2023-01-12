@@ -18,10 +18,10 @@ public class OcrService {
     @Autowired
     private OcrRepository ocrRepository;
 
-    public Mono<String> getOcrText(UUID id){
+    public Mono<UUID> getOcrText(UUID id){
 
         Mono<OcrEntity> entityMono= ocrRepository.findById(id);
-        return entityMono.map(OcrEntity::getText);
+        return entityMono.map(OcrEntity::getId);
 
 
     }

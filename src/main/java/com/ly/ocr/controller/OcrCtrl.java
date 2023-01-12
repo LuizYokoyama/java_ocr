@@ -28,7 +28,7 @@ public class OcrCtrl {
 
     @GetMapping("/ocr_text/{id}")
     @Operation(summary = "Get the text from the ocr Id")
-    public Mono<String> ocrResult(@PathVariable(value = "id") UUID id){
+    public Mono<UUID> ocrResult(@PathVariable(value = "id") UUID id){
 
         return ocrService.getOcrText(id);
 
