@@ -10,6 +10,8 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
+import static com.ly.ocr.service.OcrProcess.ocrQueue;
+
 @Service
 @Slf4j
 @Transactional
@@ -31,10 +33,14 @@ public class OcrService {
         OcrEntity ocrEntity = new OcrEntity();
         ocrEntity.setId(UUID.randomUUID());
         ocrEntity.setImage(image);
-        Mono<OcrEntity> ocrEntityMono = ocrRepository.save(ocrEntity);
-        OcrProcess.ocrQueue.add(ocrEntity.getId());
+        //Mono<OcrEntity> ocrEntityMono = ocrRepository.save(ocrEntity);
+        //ocrQueue.add(ocrEntity.getId());
 
-        return ocrEntityMono.map(OcrEntity::getId);
+        //return ocrEntityMono.map(OcrEntity::getId);
+        return ocrRepository.save(ocrEntity).map(savedEntity -> {
+            ocrQueue.add(savedEntity.getId());
+            return savedEntity.getId();
+        });
     }
 
 }
