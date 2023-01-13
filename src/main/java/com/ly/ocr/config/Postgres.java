@@ -12,9 +12,8 @@ import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
 import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 
 @Configuration
-public class Postgres extends AbstractR2dbcConfiguration {
+public class Postgres{
 
-    /*
     @Bean
     public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
         ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
@@ -25,22 +24,7 @@ public class Postgres extends AbstractR2dbcConfiguration {
         populator.addPopulators(new ResourceDatabasePopulator(new ClassPathResource("schema.sql")));
         initializer.setDatabasePopulator(populator);
 
-
         return initializer;
-    }
-*/
-    @Bean
-    @Override
-    public ConnectionFactory connectionFactory() {
-        final PostgresqlConnectionConfiguration connectionConfig = PostgresqlConnectionConfiguration.builder()
-                .database("ocr")
-                .host("localhost")
-                .password("admin")
-                .port(5433)
-                .username("admin")
-                .build();
-
-        return new PostgresqlConnectionFactory(connectionConfig);
     }
 
 }

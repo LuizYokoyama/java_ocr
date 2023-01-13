@@ -16,7 +16,7 @@ public class OcrDto {
     public static final int PHOTO_MAX_SIZE = 3145728;  // 3 Mb
 
     @EqualsAndHashCode.Include
-    private UUID id;
+    private Long id;
 
     private String text;
 

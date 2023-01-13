@@ -31,12 +31,8 @@ public class OcrService {
     public Mono<UUID> ocrSchedule(String image){
 
         OcrEntity ocrEntity = new OcrEntity();
-        ocrEntity.setId(UUID.randomUUID());
         ocrEntity.setImage(image);
-        //Mono<OcrEntity> ocrEntityMono = ocrRepository.save(ocrEntity);
-        //ocrQueue.add(ocrEntity.getId());
 
-        //return ocrEntityMono.map(OcrEntity::getId);
         return ocrRepository.save(ocrEntity).map(savedEntity -> {
             ocrQueue.add(savedEntity.getId());
             return savedEntity.getId();

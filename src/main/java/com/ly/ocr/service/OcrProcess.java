@@ -41,7 +41,6 @@ public class OcrProcess {
         }
 
         Mono<OcrEntity> ocrEntityMono = ocrRepository.findById(id);
-
         Optional<OcrEntity> ocrEntityOptional = ocrEntityMono.blockOptional();
 
         if (ocrEntityOptional.isEmpty()){
@@ -77,6 +76,7 @@ public class OcrProcess {
         ocrEntity.setImage(""); //free image from db
 
         ocrRepository.save(ocrEntity);
+
 
     }
 
