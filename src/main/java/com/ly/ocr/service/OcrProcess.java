@@ -1,6 +1,5 @@
 package com.ly.ocr.service;
 
-
 import com.ly.ocr.model.OcrEntity;
 import com.ly.ocr.repository.OcrRepository;
 import net.sourceforge.tess4j.Tesseract;
@@ -10,19 +9,19 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.*;
 
+
 @Component
 @EnableScheduling
 public class OcrProcess {
 
     public static final Queue ocrQueue = new LinkedList();
-    public static final String DATA_PATH = "/home/luiz/dev/Tess4J/tessdata/";
+    public static final String DATA_PATH = "/home/luiz/Downloads/";
     public static final int ENGINE_MODE = 2;
     public static final int PAGE_MODE = 1;
     public static final String LANG = "por";
@@ -75,8 +74,7 @@ public class OcrProcess {
         ocrEntity.setText(text);
         ocrEntity.setImage(""); //free image from db
 
-        ocrRepository.save(ocrEntity);
-
+        ocrRepository.save(ocrEntity).block();
 
     }
 
