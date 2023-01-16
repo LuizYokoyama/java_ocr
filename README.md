@@ -7,4 +7,5 @@ To install tesseract:
 
 sudo apt-get install tesseract-ocr
 
+
 sudo apt-get install tesseract-ocr-por
