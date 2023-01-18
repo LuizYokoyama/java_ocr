@@ -21,7 +21,7 @@ import java.util.*;
 public class OcrProcess {
 
     public static final Queue ocrQueue = new LinkedList();
-    public static final String DATA_PATH = "src/main/resources/tessdata";
+    public static final String DATA_PATH = "/usr/share/tesseract-ocr/5/tessdata/";
     public static final int ENGINE_MODE = 2;
     public static final int PAGE_MODE = 1;
     public static final String LANG = "por";

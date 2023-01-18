@@ -1,11 +1,12 @@
 # java_ocr
 Tesseract ocr java
 
-Execute to run Postgres: docker-compose up -d
+Execute:
 
-To install tesseract:
+mvn package -Dmaven.test.skip
 
-sudo apt-get install tesseract-ocr
+docker build -t ocr-image .
+
+docker-compose up -d
 
 
-sudo apt-get install tesseract-ocr-por
