@@ -5,8 +5,7 @@ Execute:
 
 mvn package -Dmaven.test.skip
 
-docker build -t ocr-image .
+docker-compose up -d --build
 
-docker-compose up -d
 
 
