@@ -22,7 +22,7 @@ public class OcrCtrl {
     @Operation(summary = "post image to do OCR, return uuid")
     public Mono<UUID> ocr(@RequestBody ImageDto msg){
 
-        return ocrService.ocrSchedule(msg.getImage());
+        return ocrService.putOnOcrQueue(msg.getImage());
 
     }
 

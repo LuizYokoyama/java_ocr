@@ -28,7 +28,7 @@ public class OcrService {
 
     }
 
-    public Mono<UUID> ocrSchedule(String image){
+    public Mono<UUID> putOnOcrQueue(String image){
 
         OcrEntity ocrEntity = new OcrEntity();
         ocrEntity.setImage(image);
