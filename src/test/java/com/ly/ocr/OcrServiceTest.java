@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @Testcontainers
-@ActiveProfiles(profiles = "test")
+@ActiveProfiles(profiles = "integration-test")
 public class OcrServiceTest {
 
     @Autowired

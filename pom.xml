@@ -76,6 +76,11 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>postgresql </artifactId>
+			<version>1.17.6</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.testcontainers</groupId>
@@ -91,15 +96,43 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>postgresql </artifactId>
-			<version>1.17.6</version>
-		</dependency>
+
+
+
 
 	</dependencies>
 
+	<profiles>
+		<profile>
+			<id>integration-test</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>spring.profiles.active</name>
+					<value>integration-test</value>
+				</property>
+			</activation>
+			<properties>
+				<spring.profile.from.maven>integration-test</spring.profile.from.maven>
+			</properties>
+			<dependencies>
 
+			</dependencies>
+		</profile>
+		<profile>
+			<id>production-docker</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<property>
+					<name>spring.profiles.active</name>
+					<value>production-docker</value>
+				</property>
+			</activation>
+			<properties>
+				<spring.profile.from.maven>production-docker</spring.profile.from.maven>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>

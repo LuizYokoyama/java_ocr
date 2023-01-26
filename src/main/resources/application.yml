@@ -11,7 +11,18 @@ spring:
     url: r2dbc:tc:postgresql:///testdb?TC_IMAGE_TAG=14-alpine
   config:
     activate:
-      on-profile: test
+      on-profile: integration-test
+
+---
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://host.docker.internal:5433/ocr
+    username: admin
+    password: admin
+  config:
+    activate:
+      on-profile: production-docker
 
 
 ---
