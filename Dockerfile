@@ -6,8 +6,12 @@ RUN apt-get install -y openjdk-17-jdk
 ARG JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
 ENV JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
 
+# Install leptonic library
+RUN apt-get install liblept5
+
 # Install tesseract library
 RUN apt-get install -y tesseract-ocr
+
 RUN mkdir -p /usr/share/tesseract-ocr/5/tessdata/
 ADD https://github.com/tesseract-ocr/tessdata/blob/main/por.traineddata?raw=true /usr/share/tesseract-ocr/5/tessdata/por.traineddata
 RUN chmod u=rwx,g=rwx,o=rwx /usr/share/tesseract-ocr/5/tessdata/por.traineddata
