@@ -12,9 +12,9 @@ RUN apt-get install liblept5
 # Install tesseract library
 RUN apt-get install -y tesseract-ocr
 
-RUN mkdir -p /usr/share/tesseract-ocr/5/tessdata/
-ADD https://github.com/tesseract-ocr/tessdata/blob/main/por.traineddata?raw=true /usr/share/tesseract-ocr/5/tessdata/por.traineddata
-RUN chmod u=rwx,g=rwx,o=rwx /usr/share/tesseract-ocr/5/tessdata/por.traineddata
+RUN mkdir -p /usr/share/tessdata/
+ADD https://github.com/tesseract-ocr/tessdata/blob/main/por.traineddata?raw=true /usr/share/tessdata/por.traineddata
+RUN chmod u=rwx,g=rwx,o=rwx /usr/share/tessdata/por.traineddata
 
 # Check the installation status
 RUN tesseract --list-langs
