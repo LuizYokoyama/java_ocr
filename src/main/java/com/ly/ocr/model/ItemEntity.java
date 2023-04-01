@@ -1,32 +1,32 @@
 package com.ly.ocr.model;
 
-
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
-
 
 import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Setter
 @ToString
+@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name="tb_ocr")
-public class OcrEntity{
+public class ItemEntity {
 
     @EqualsAndHashCode.Include
-    @Column("ocr_id")
+    @Column("item_id")
     @Id
     private UUID id;
 
-    @Column( "ocr_text")
-    private String text;
+    private String nomeItem;
 
-    @Column("image")
-    private String image;
+    private int qtd;
+
+    private String unidade;
+
+    private float valorUnit;
+
+    private float valorTotalItem;
 
 }

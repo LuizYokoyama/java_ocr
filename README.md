@@ -1,7 +1,7 @@
 # java_ocr
 Tesseract ocr java
 
-Dev branch
+qrcode_readed_url branch
 
 execute:
 

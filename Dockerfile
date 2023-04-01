@@ -1,27 +1,11 @@
-FROM ubuntu:22.10
-RUN apt-get update
-
-#install java
-RUN apt-get install -y openjdk-17-jdk
-ARG JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-ENV JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-
-# Install leptonic library
-RUN apt-get install liblept5
-
-# Install tesseract library
-RUN apt-get install -y tesseract-ocr
-
-RUN mkdir -p /usr/share/tessdata/
-ADD https://github.com/tesseract-ocr/tessdata/blob/main/por.traineddata?raw=true /usr/share/tessdata/por.traineddata
-RUN chmod u=rwx,g=rwx,o=rwx /usr/share/tessdata/por.traineddata
-
-# Check the installation status
-RUN tesseract --list-langs
-RUN tesseract -v
+FROM openjdk:17-alpine
 
 # Set the name of the jar
 ENV APP_FILE ocr-0.0.1-SNAPSHOT.jar
+
+ADD https://chromedriver.storage.googleapis.com/110.0.5481.77/chromedriver_linux64.zip /tmp/
+
+RUN unzip /tmp/chromedriver_linux64.zip
 
 # Open the port
 EXPOSE 8080
