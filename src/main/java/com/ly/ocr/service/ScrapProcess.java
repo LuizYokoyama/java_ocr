@@ -46,13 +46,13 @@ public class ScrapProcess {
 
         CupomEntity cupomEntity = cupomEntityOptional.get();
 
-        cupomEntity = scrapSummarizedItems(cupomEntity.getUrl());
+        cupomEntity = scrapSummarizedItems(cupomEntity.getUrl(), id);
 
         cupomRepository.save(cupomEntity).block();
 
     }
 
-    public static CupomEntity scrapSummarizedItems(String nfeUrl) {
+    public static CupomEntity scrapSummarizedItems(String nfeUrl, UUID id) {
 
         webDriver.get(nfeUrl);
 
@@ -63,6 +63,8 @@ public class ScrapProcess {
         webDriver.switchTo().frame(iframe);
 
         CupomEntity cupom = new CupomEntity();
+
+        cupom.setId(id);
 
         cupom.setUrl(nfeUrl);
 
