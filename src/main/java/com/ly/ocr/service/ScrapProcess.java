@@ -12,6 +12,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import static com.ly.ocr.OcrApplication.webDriver;
@@ -132,10 +134,13 @@ public class ScrapProcess {
             }
         }
 
-        cupom.setEmissao(
-                webDriver.findElement(By.className("ui-li-static")).
-                        getText().split(" Emissão: ")[1].split("- Via Consumidor")[0]
-        );
+        DateTimeFormatter formatter
+                = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss ");
+        String text = webDriver.findElement(By.className("ui-li-static")).
+                getText().split(" Emissão: ")[1].split("- Via Consumidor")[0];
+        LocalDateTime dateTime = LocalDateTime.parse(text, formatter);
+
+        cupom.setEmissao(dateTime);
 
         return cupom;
 
@@ -222,10 +227,13 @@ public class ScrapProcess {
             }
         }
 
-        cupom.setEmissao(
-                webDriver.findElement(By.className("ui-li-static")).
-                        getText().split(" Emissão: ")[1].split("- Via Consumidor")[0]
-        );
+        DateTimeFormatter formatter
+                = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss ");
+        String text = webDriver.findElement(By.className("ui-li-static")).
+                getText().split(" Emissão: ")[1].split("- Via Consumidor")[0];
+        LocalDateTime dateTime = LocalDateTime.parse(text, formatter);
+
+        cupom.setEmissao(dateTime);
 
         return cupom;
 

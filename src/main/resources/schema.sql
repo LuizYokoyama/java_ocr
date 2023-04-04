@@ -7,6 +7,8 @@ CREATE SERVER IF NOT EXISTS ocr FOREIGN DATA WRAPPER postgres_fdw OPTIONS (
     host 'localhost', dbname 'nfce', port '5433'
 );
 
+-- DROP TABLE IF EXISTS tb_nfce;
+
 CREATE TABLE IF NOT EXISTS tb_nfce(
                        cupom_id UUID DEFAULT uuid_generate_v4 (),
                        url varchar(255),
@@ -22,6 +24,6 @@ CREATE TABLE IF NOT EXISTS tb_nfce(
                        pix float,
                        troco float,
                        tributos float,
-                       emissao varchar(40),
+                       emissao timestamp,
                        PRIMARY KEY (cupom_id)
 );

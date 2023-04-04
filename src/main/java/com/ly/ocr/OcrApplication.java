@@ -17,7 +17,7 @@ public class OcrApplication {
 
 	public static void main(String[] args) {
 
-		String chromeDriverPath = "/tmp/chromedriver_linux64/chromedriver" ;
+		String chromeDriverPath = "chromedriver_linux64/chromedriver" ;
 		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
