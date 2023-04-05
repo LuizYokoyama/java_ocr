@@ -3,9 +3,9 @@ FROM openjdk:17-alpine
 # Set the name of the jar
 ENV APP_FILE ocr-0.0.1-SNAPSHOT.jar
 
-ADD https://chromedriver.storage.googleapis.com/110.0.5481.77/chromedriver_linux64.zip /tmp/
+ADD https://github.com/LuizYokoyama/java_ocr/blob/qrcode_readed_url/chromedriver_linux64/chromedriver?raw=true /home/chromedriver_linux64/chromedriver.exe
 
-RUN unzip /tmp/chromedriver_linux64.zip
+RUN chmod o+x /home/chromedriver_linux64/chromedriver.exe
 
 # Open the port
 EXPOSE 8080
