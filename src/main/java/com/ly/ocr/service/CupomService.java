@@ -1,11 +1,14 @@
 package com.ly.ocr.service;
 
+import com.ly.ocr.dto.CupomDto;
 import com.ly.ocr.model.CupomEntity;
 import com.ly.ocr.repository.CupomRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.CoreSubscriber;
 import reactor.core.publisher.Mono;
 
 import java.util.UUID;
@@ -30,10 +33,17 @@ public class CupomService {
         });
     }
 
-    public Mono<CupomEntity> getNfCE(UUID id) {
+    public Mono<CupomDto> getNfCE(UUID id) {
 
-        Mono<CupomEntity> entityMono= cupomRepository.findById(id);
-        return entityMono;
+        Mono<CupomEntity> cupomEntityMono= cupomRepository.findById(id);
 
+        return cupomRepository.findById(id)
+                .switchIfEmpty(
+                        Mono.error(new RuntimeException("Cupom não encontrado para este Id!")))
+                .map(cupomEntity -> {
+                            CupomDto cupomDto = new CupomDto();
+                            BeanUtils.copyProperties(cupomEntity, cupomDto);
+                            return cupomDto;
+                });
     }
 }

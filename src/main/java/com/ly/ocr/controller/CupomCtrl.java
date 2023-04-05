@@ -1,5 +1,6 @@
 package com.ly.ocr.controller;
 
+import com.ly.ocr.dto.CupomDto;
 import com.ly.ocr.model.CupomEntity;
 import com.ly.ocr.service.CupomService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,7 +29,7 @@ public class CupomCtrl {
 
     @GetMapping("/nfce/{id}")
     @Operation(summary = "Get the NFC-e from the Id")
-    public Mono<CupomEntity> ocrResult(@PathVariable(value = "id") UUID id){
+    public Mono<CupomDto> ocrResult(@PathVariable(value = "id") UUID id){
 
         return cupomService.getNfCE(id);
 
