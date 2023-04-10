@@ -2,8 +2,8 @@ package com.ly.ocr;
 
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,19 +15,19 @@ public class OcrApplication {
 
 
 	public static void main(String[] args) {
-
 		webDriverInit();
 		SpringApplication.run(OcrApplication.class, args);
+
 
 	}
 
 	public static void webDriverInit() {
 
-		String chromeDriverPath = "chromedriver_linux64/chromedriver" ;
-		System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
-		webDriver = new ChromeDriver(options);
+		FirefoxOptions browserDriverOptions = new FirefoxOptions();
+		browserDriverOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
+		String firefoxDriverPath = "geckodriver/geckodriver" ;
+		System.setProperty("webdriver.gecko.driver", firefoxDriverPath);
+		webDriver = new FirefoxDriver(browserDriverOptions);
 
 	}
 
