@@ -1,7 +1,7 @@
 
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5433/nfce
+    url: r2dbc:postgresql://host.docker.internal:5433/nfce
     username: admin
     password: admin
 ---
