@@ -4,7 +4,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "postgres_fdw";
 
 CREATE SERVER IF NOT EXISTS ocr FOREIGN DATA WRAPPER postgres_fdw OPTIONS (
-    host 'localhost', dbname 'nfce', port '5433'
+    host 'postgresql', dbname 'nfce', port '5433'
 );
 
 -- DROP TABLE IF EXISTS tb_nfce;
