@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS tb_nfce(
                        cartao_debito float,
                        dinheiro float,
                        pix float,
+                       outros float,
                        troco float,
                        tributos float,
                        emissao timestamp,

@@ -43,6 +43,8 @@ public class CupomDto {
 
     private Float pix;
 
+    private Float outros;
+
     private Float troco;
 
     private Float tributos;

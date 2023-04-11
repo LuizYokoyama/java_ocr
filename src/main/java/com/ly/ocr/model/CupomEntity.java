@@ -57,6 +57,9 @@ public class CupomEntity {
     @Column("pix")
     private Float pix;
 
+    @Column("outros")
+    private Float outros;
+
     @Column("troco")
     private Float troco;
 

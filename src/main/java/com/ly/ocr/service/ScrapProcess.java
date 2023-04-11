@@ -122,6 +122,10 @@ public class ScrapProcess {
                         cupom.setPix(Float.parseFloat(linhaTotal.get(i).findElement(By.className("totalNumb")).getText()
                                 .replace(",",".")));
                         break;
+                    case "Outros":
+                        cupom.setOutros(Float.parseFloat(linhaTotal.get(i).findElement(By.className("totalNumb")).getText()
+                                .replace(",",".")));
+                        break;
                     case "Troco":
                         cupom.setTroco(Float.parseFloat(linhaTotal.get(i).findElement(By.className("totalNumb")).getText()
                                 .replace(",",".")));

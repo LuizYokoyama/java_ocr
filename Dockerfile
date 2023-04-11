@@ -1,11 +1,14 @@
-FROM openjdk:17-alpine
+FROM openjdk:17-jdk-alpine
 
 # Set the name of the jar
 ENV APP_FILE ocr-0.0.1-SNAPSHOT.jar
 
-ADD https://github.com/LuizYokoyama/java_ocr/blob/qrcode_readed_url/chromedriver_linux64/chromedriver?raw=true /home/chromedriver_linux64/chromedriver.exe
+ADD https://github.com/LuizYokoyama/java_ocr/blob/qrcode_readed_url_firefox_driver/geckodriver/geckodriver?raw=true /geckodriver/geckodriver
 
-RUN chmod o+x /home/chromedriver_linux64/chromedriver.exe
+RUN chmod o+x /geckodriver/geckodriver
+
+RUN apk update
+RUN apk add firefox
 
 # Open the port
 EXPOSE 8080
