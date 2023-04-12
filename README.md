@@ -1,5 +1,5 @@
 
-# Java webcrawler 
+# Leitor de cupom fiscal a partir da url do qrcode do cupom 
 
 A partir da url lida de um qrcode de cupom fiscal, será feito o scrap com o browser firefox, 
 de todos os itens relevantes do cupom fiscal
